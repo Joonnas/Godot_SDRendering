@@ -1,0 +1,11 @@
+2a60927148abd1d33b818b535e306557
+::res://::1688369549
+Control.gd::GDScript::-1::1688369051::0::1::::<>Control<>::
+control.tscn::PackedScene::3495671245615878025::1688369495::0::1::::<><>::
+icon.svg::CompressedTexture2D::2609402262511712000::1686489015::1686489021::1::::<><>::
+::res://addons/::1686489163
+::res://addons/stablediffusion_renderer/::1688369495
+plugin.cfg::TextFile::-1::1686489163::0::1::::<><>::
+sd_configs.gd::GDScript::-1::1688369037::0::1::::SD_Config<>Node<>::
+stablediffusion_renderer.gd::GDScript::-1::1688369495::0::1::::SD_Renderer<>EditorPlugin<>::
+Stable_Renderer.gd::GDScript::-1::1688369427::0::1::::<>Button<>::
