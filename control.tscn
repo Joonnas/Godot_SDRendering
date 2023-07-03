@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://bp2lgvcfbixnd"]
+
+[ext_resource type="Script" path="res://addons/stablediffusion_renderer/Stable_Renderer.gd" id="1_b523h"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SD_Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 516.0
+offset_top = 210.0
+offset_right = 707.0
+offset_bottom = 241.0
+text = "Click for render with SD"
+script = ExtResource("1_b523h")
