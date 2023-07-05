@@ -5,6 +5,9 @@ extends Button
 
 @export var prompt : String = "Cute puppy"
 @export var steps : int = 50
+@export var depth_image : Texture
+
+@export var texture_rect : TextureRect
 
 var requestNode
 
@@ -40,18 +43,65 @@ func _on_request_completed(result, response_code, headers, body):
 	
 	# create texture from image and add it to root
 	var texture = ImageTexture.create_from_image(image)
-	#print(texture)
-	var texture_rect = TextureRect.new()
-	get_node("/root").add_child(texture_rect)
 	texture_rect.texture = texture
 
 func generateJsonFromData():
 	var dataAsJson = JSON.new().stringify({
 		"prompt": prompt,
-		"steps": steps
+		"steps": steps,
+		"alwayson_scripts": {
+			"controlnet": {
+				"args": [
+					{
+						"input_image": encodeBase64(depth_image.get_image()),
+						"module": "depth",
+						"model": "control_v11f1p_sd15_depth [cfd03158]"
+					}
+				]
+			}
+		}
 	})
 	return dataAsJson
 
+func encodeBase64(data: Image):
+	var buffer_data = data.save_png_to_buffer()
+	var encoded_string = ""
+	var encoded_array = []
+	
+	var counter = 0
+	for i in range(buffer_data.size() / 3):
+		
+		# create a 24 bit number from three values
+		var long_byte = 0b0
+		var padding = 0
+		if buffer_data.size() < (counter + 1):
+			long_byte = long_byte | (buffer_data[counter] << 16)
+			padding = 2
+		elif buffer_data.size() < (counter + 2):
+			long_byte = long_byte | (buffer_data[counter] << 16) | (buffer_data[counter + 1] << 8)
+			padding = 1
+		else:
+			long_byte = long_byte | (buffer_data[counter] << 16) | (buffer_data[counter + 1] << 8) | (buffer_data[counter + 2])
+		
+		# Add the four chars to the encoded string
+		encoded_array.append(SD_Renderer.to_b64_database[((long_byte & (0b111111 << 18)) >> 18)])
+		encoded_array.append(SD_Renderer.to_b64_database[((long_byte & (0b111111 << 12)) >> 12)])
+		if padding == 2:
+			#encoded_string += "=="
+			encoded_array.append("=")
+			encoded_array.append("=")
+		else:
+			encoded_array.append(SD_Renderer.to_b64_database[((long_byte & (0b111111 << 6)) >> 6)])
+			if padding == 1:
+				#encoded_string += "="
+				encoded_array.append("=")
+			else:
+				encoded_array.append(SD_Renderer.to_b64_database[(long_byte & 0b111111)])
+		
+		counter += 3
+	
+	encoded_string = "".join(PackedStringArray(encoded_array))
+	return encoded_string
 
 # Decodes base64 encoded data represented as a string
 # Returns a PackedByteArray with the decoded utf8 bytes
@@ -66,11 +116,11 @@ func decodeBase64(data: String):
 		var bin_buffer = []
 		for char in sub_data:
 			if char != "=":
-				bin_buffer.append(SD_Renderer.b64_database[char])
+				bin_buffer.append(SD_Renderer.from_b64_database[char])
 			else:
 				bin_buffer.append(0b000000)
 		
-		# create a number with lenght of 24
+		# create a number with lenght of 24 (4 * 6 or 3 * 8)
 		var bin_number = 0b0
 		for idx in range(bin_buffer.size()):
 			var b = (bin_buffer[idx] << (18 - (idx * 6)))
@@ -100,3 +150,4 @@ func _ready():
 
 func _enter_tree():
 	pressed.connect(generate_from_data)
+	#print(texture)

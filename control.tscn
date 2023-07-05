@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bp2lgvcfbixnd"]
+[gd_scene load_steps=3 format=3 uid="uid://bp2lgvcfbixnd"]
 
 [ext_resource type="Script" path="res://addons/stablediffusion_renderer/Stable_Renderer.gd" id="1_b523h"]
+[ext_resource type="Texture2D" uid="uid://uvut16vx6xwr" path="res://addons/stablediffusion_renderer/test_stuff/test_depth_map.png" id="2_tn24u"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -10,7 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SD_Button" type="Button" parent="."]
+[node name="SD_Button" type="Button" parent="." node_paths=PackedStringArray("texture_rect")]
 layout_mode = 0
 offset_left = 516.0
 offset_top = 210.0
@@ -18,3 +19,12 @@ offset_right = 707.0
 offset_bottom = 241.0
 text = "Click for render with SD"
 script = ExtResource("1_b523h")
+prompt = "skyscrappers, on a field"
+steps = 20
+depth_image = ExtResource("2_tn24u")
+texture_rect = NodePath("../TextureRect")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
