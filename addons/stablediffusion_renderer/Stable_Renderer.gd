@@ -8,6 +8,7 @@ extends Button
 @export var depth_image : Texture
 
 @export var texture_rect : TextureRect
+@export var scene : Node3D
 
 var requestNode
 
@@ -19,6 +20,12 @@ func generate_from_data() -> void:
 	var json = generateJsonFromData()
 	var headers = ["Content-Type: application/json"]
 	requestNode.request(api_url, headers, HTTPClient.METHOD_POST, json)
+	
+	# create texture from image and add it to root
+	#var texture = ImageTexture.create_from_image(scene.get_depth_texture())
+	#texture_rect.texture = texture
+	
+	#get_viewport().get_texture().get_data()
 
 
 func _on_request_completed(result, response_code, headers, body):
@@ -49,17 +56,20 @@ func generateJsonFromData():
 	var dataAsJson = JSON.new().stringify({
 		"prompt": prompt,
 		"steps": steps,
-		"alwayson_scripts": {
-			"controlnet": {
-				"args": [
-					{
-						"input_image": encodeBase64(depth_image.get_image()),
-						"module": "depth",
-						"model": "control_v11f1p_sd15_depth [cfd03158]"
-					}
-				]
-			}
-		}
+		"width": 640,
+		"height": 360
+		#"alwayson_scripts": {
+		#	"controlnet": {
+		#		"args": [
+		#			{
+		#				#"input_image": encodeBase64(depth_image.get_image()),
+		#				"input_image": encodeBase64(scene.get_depth_texture()),
+		#				"module": "depth",
+		#				"model": "control_v11f1p_sd15_depth [cfd03158]"
+		#			}
+		#		]
+		#	}
+		#}
 	})
 	return dataAsJson
 

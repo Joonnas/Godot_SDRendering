@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3 uid="uid://bw8pasxsqrc5"]
+
+[ext_resource type="PackedScene" uid="uid://cgbgfdgmfvr78" path="res://scene.tscn" id="1_p2mjf"]
+[ext_resource type="Script" path="res://addons/stablediffusion_renderer/Stable_Renderer.gd" id="2_d10al"]
+[ext_resource type="Texture2D" uid="uid://uvut16vx6xwr" path="res://addons/stablediffusion_renderer/test_stuff/test_depth_map.png" id="3_bwpck"]
+
+[node name="Node" type="Node"]
+
+[node name="scene" parent="." instance=ExtResource("1_p2mjf")]
+
+[node name="Button_container" type="AspectRatioContainer" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -272.0
+offset_top = -273.0
+offset_right = -81.0
+offset_bottom = -233.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="SD_Button" type="Button" parent="Button_container" node_paths=PackedStringArray("texture_rect", "scene")]
+layout_mode = 2
+text = "Click for render with SD"
+script = ExtResource("2_d10al")
+prompt = "skyscrapers in san francisco, unreal engine"
+steps = 20
+depth_image = ExtResource("3_bwpck")
+texture_rect = NodePath("../../Viewport_container/SubViewportContainer/SubViewport/TextureRect")
+scene = NodePath("../../scene")
+
+[node name="Viewport_container" type="AspectRatioContainer" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -386.0
+offset_top = -218.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Viewport_border" type="ColorRect" parent="Viewport_container"]
+custom_minimum_size = Vector2(386, 0)
+layout_mode = 2
+size_flags_stretch_ratio = 6.43
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Viewport_container"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="SubViewport" type="SubViewport" parent="Viewport_container/SubViewportContainer"]
+disable_3d = true
+handle_input_locally = false
+size = Vector2i(384, 216)
+render_target_update_mode = 4
+
+[node name="TextureRect" type="TextureRect" parent="Viewport_container/SubViewportContainer/SubViewport"]
+offset_right = 384.0
+offset_bottom = 216.0
+expand_mode = 2
