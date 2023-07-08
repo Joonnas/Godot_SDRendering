@@ -1,12 +1,32 @@
-[gd_scene load_steps=4 format=3 uid="uid://bw8pasxsqrc5"]
+[gd_scene load_steps=5 format=3 uid="uid://bw8pasxsqrc5"]
 
 [ext_resource type="PackedScene" uid="uid://cgbgfdgmfvr78" path="res://scene.tscn" id="1_p2mjf"]
+[ext_resource type="Script" path="res://main.gd" id="1_rgj1n"]
 [ext_resource type="Script" path="res://addons/stablediffusion_renderer/Stable_Renderer.gd" id="2_d10al"]
 [ext_resource type="Texture2D" uid="uid://uvut16vx6xwr" path="res://addons/stablediffusion_renderer/test_stuff/test_depth_map.png" id="3_bwpck"]
 
 [node name="Node" type="Node"]
+script = ExtResource("1_rgj1n")
 
-[node name="scene" parent="." instance=ExtResource("1_p2mjf")]
+[node name="Big_Viewport_container" type="AspectRatioContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 3
+
+[node name="BigViewport" type="SubViewportContainer" parent="Big_Viewport_container"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="SubViewport" type="SubViewport" parent="Big_Viewport_container/BigViewport"]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="scene" parent="Big_Viewport_container/BigViewport/SubViewport" instance=ExtResource("1_p2mjf")]
 
 [node name="Button_container" type="AspectRatioContainer" parent="."]
 anchors_preset = 3
@@ -28,10 +48,10 @@ script = ExtResource("2_d10al")
 prompt = "skyscrapers in san francisco, unreal engine"
 steps = 20
 depth_image = ExtResource("3_bwpck")
-texture_rect = NodePath("../../Viewport_container/SubViewportContainer/SubViewport/TextureRect")
-scene = NodePath("../../scene")
+texture_rect = NodePath("../../Small_Viewport_container/SmallViewport/SubViewport/TextureRect")
+scene = NodePath("../../Big_Viewport_container/BigViewport/SubViewport/scene")
 
-[node name="Viewport_container" type="AspectRatioContainer" parent="."]
+[node name="Small_Viewport_container" type="AspectRatioContainer" parent="."]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -42,22 +62,24 @@ offset_top = -218.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="Viewport_border" type="ColorRect" parent="Viewport_container"]
+[node name="Viewport_border" type="ColorRect" parent="Small_Viewport_container"]
 custom_minimum_size = Vector2(386, 0)
 layout_mode = 2
 size_flags_stretch_ratio = 6.43
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="Viewport_container"]
+[node name="SmallViewport" type="SubViewportContainer" parent="Small_Viewport_container"]
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="SubViewport" type="SubViewport" parent="Viewport_container/SubViewportContainer"]
-disable_3d = true
+[node name="SubViewport" type="SubViewport" parent="Small_Viewport_container/SmallViewport"]
 handle_input_locally = false
 size = Vector2i(384, 216)
 render_target_update_mode = 4
 
-[node name="TextureRect" type="TextureRect" parent="Viewport_container/SubViewportContainer/SubViewport"]
-offset_right = 384.0
-offset_bottom = 216.0
+[node name="TextureRect" type="TextureRect" parent="Small_Viewport_container/SmallViewport/SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 expand_mode = 2

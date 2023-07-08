@@ -24,8 +24,6 @@ func generate_from_data() -> void:
 	# create texture from image and add it to root
 	#var texture = ImageTexture.create_from_image(scene.get_depth_texture())
 	#texture_rect.texture = texture
-	
-	#get_viewport().get_texture().get_data()
 
 
 func _on_request_completed(result, response_code, headers, body):
