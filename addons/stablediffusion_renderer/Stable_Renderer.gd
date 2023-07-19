@@ -5,7 +5,6 @@ extends Button
 
 @export var prompt : String = "Cute puppy"
 @export var steps : int = 50
-@export var depth_image : Texture
 
 @export var texture_rect : TextureRect
 @export var scene : Node3D
@@ -22,7 +21,7 @@ func generate_from_data() -> void:
 	requestNode.request(api_url, headers, HTTPClient.METHOD_POST, json)
 	
 	# create texture from image and add it to root
-	#var texture = ImageTexture.create_from_image(scene.get_depth_texture())
+	#var texture = ImageTexture.create_from_image(scene.get_edge_texture())
 	#texture_rect.texture = texture
 
 
@@ -55,19 +54,22 @@ func generateJsonFromData():
 		"prompt": prompt,
 		"steps": steps,
 		"width": 640,
-		"height": 360
-		#"alwayson_scripts": {
-		#	"controlnet": {
-		#		"args": [
-		#			{
-		#				#"input_image": encodeBase64(depth_image.get_image()),
-		#				"input_image": encodeBase64(scene.get_depth_texture()),
-		#				"module": "depth",
-		#				"model": "control_v11f1p_sd15_depth [cfd03158]"
-		#			}
-		#		]
-		#	}
-		#}
+		"height": 360,
+#		"seed": 1246581,
+		"alwayson_scripts": {
+			"controlnet": {
+				"args": [
+					{
+						#"input_image": encodeBase64(depth_image.get_image()),
+						"input_image": encodeBase64(scene.get_edge_texture()),
+						#"module": "depth",
+						#"model": "control_v11f1p_sd15_depth [cfd03158]"
+						"module": "canny",
+						"model": "control_v11p_sd15_canny [d14c016b]"
+					}
+				]
+			}
+		}
 	})
 	return dataAsJson
 

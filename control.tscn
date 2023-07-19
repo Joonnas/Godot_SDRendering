@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bp2lgvcfbixnd"]
+[gd_scene load_steps=2 format=3 uid="uid://bp2lgvcfbixnd"]
 
 [ext_resource type="Script" path="res://addons/stablediffusion_renderer/Stable_Renderer.gd" id="1_b523h"]
-[ext_resource type="Texture2D" uid="uid://uvut16vx6xwr" path="res://addons/stablediffusion_renderer/test_stuff/test_depth_map.png" id="2_tn24u"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -21,4 +20,3 @@ text = "Click for render with SD"
 script = ExtResource("1_b523h")
 prompt = "skyscrapers in san francisco, unreal engine"
 steps = 20
-depth_image = ExtResource("2_tn24u")

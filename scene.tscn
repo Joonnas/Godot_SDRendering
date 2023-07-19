@@ -1,12 +1,20 @@
-[gd_scene load_steps=13 format=3 uid="uid://cgbgfdgmfvr78"]
+[gd_scene load_steps=17 format=3 uid="uid://cgbgfdgmfvr78"]
 
 [ext_resource type="Script" path="res://scene.gd" id="1_dij8n"]
 [ext_resource type="Shader" path="res://depth_map.gdshader" id="1_uo68q"]
+[ext_resource type="Environment" uid="uid://cumh0jsy5i3k8" path="res://Viewport_Environment.tres" id="2_k0me7"]
+[ext_resource type="Shader" path="res://sobelsedge.gdshader" id="3_bofvt"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_nv4wq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eu0sx"]
 albedo_color = Color(0.470588, 0, 0.0392157, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_nfhdk"]
+height = 1.5
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ty7hc"]
+height = 3.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_b6xul"]
 size = Vector2(10, 10)
@@ -14,47 +22,66 @@ size = Vector2(10, 10)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nnkt6"]
 albedo_color = Color(0, 0.14902, 0.368627, 1)
 
-[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_yy2o1"]
-turbidity = 0.0
-ground_color = Color(1, 1, 1, 1)
-use_debanding = false
-
-[sub_resource type="Sky" id="Sky_vml70"]
-sky_material = SubResource("PhysicalSkyMaterial_yy2o1")
-
-[sub_resource type="Environment" id="Environment_gp0m8"]
-background_mode = 2
-sky = SubResource("Sky_vml70")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_kfxn4"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dqkyh"]
 render_priority = 0
 shader = ExtResource("1_uo68q")
 
 [sub_resource type="QuadMesh" id="QuadMesh_am7tg"]
-material = SubResource("ShaderMaterial_kfxn4")
+material = SubResource("ShaderMaterial_dqkyh")
 flip_faces = true
 size = Vector2(2, 2)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q10ud"]
+render_priority = 0
+shader = ExtResource("3_bofvt")
+shader_parameter/resolution = null
+
+[sub_resource type="QuadMesh" id="QuadMesh_bhoee"]
+material = SubResource("ShaderMaterial_q10ud")
+flip_faces = true
+size = Vector2(2, 2)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_eko2c"]
+viewport_path = NodePath("Edge_Subviewport")
+
 [sub_resource type="ViewportTexture" id="ViewportTexture_ljltx"]
-viewport_path = NodePath("SubViewport")
+viewport_path = NodePath("Depth_Subviewport")
 
 [node name="scene" type="Node3D"]
 script = ExtResource("1_dij8n")
 
 [node name="cylinder" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.985078, 0)
-layers = 524289
+layers = 655361
 mesh = SubResource("CylinderMesh_nv4wq")
 surface_material_override/0 = SubResource("StandardMaterial3D_eu0sx")
 
+[node name="cylinder2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.62737, 0.74938, 0.687656)
+layers = 655361
+mesh = SubResource("CylinderMesh_nfhdk")
+surface_material_override/0 = SubResource("StandardMaterial3D_eu0sx")
+
+[node name="cylinder3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.39081, 0.74938, -1.78636)
+layers = 655361
+mesh = SubResource("CylinderMesh_nfhdk")
+surface_material_override/0 = SubResource("StandardMaterial3D_eu0sx")
+
+[node name="cylinder4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.98475, 0.956119, 0.667154)
+layers = 786431
+mesh = SubResource("CylinderMesh_ty7hc")
+surface_material_override/0 = SubResource("StandardMaterial3D_eu0sx")
+
 [node name="plane" type="MeshInstance3D" parent="."]
-layers = 524289
+layers = 655361
 mesh = SubResource("PlaneMesh_b6xul")
 surface_material_override/0 = SubResource("StandardMaterial3D_nnkt6")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.91095, 0.412516, 0, -0.412516, 0.91095, 0, 2.16416, 2.84432)
-cull_mask = 262143
+cull_mask = 131071
 current = true
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
@@ -66,21 +93,21 @@ shadow_enabled = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.215178, -0.571138, 0.792149, -0.29187, 0.811686, 0.505942, -0.931939, -0.122337, -0.341355, 3.55354, 3.08697, -4.42038)
-light_cull_mask = 4294180863
+light_cull_mask = 4294049791
 shadow_enabled = true
 
-[node name="SubViewport" type="SubViewport" parent="."]
+[node name="Depth_Subviewport" type="SubViewport" parent="."]
 transparent_bg = true
 size = Vector2i(384, 216)
 render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+[node name="Camera3D" type="Camera3D" parent="Depth_Subviewport"]
 transform = Transform3D(1, 0, 0, 0, 0.91095, 0.412516, 0, -0.412516, 0.91095, 0, 2.16416, 2.84432)
 cull_mask = 786432
-environment = SubResource("Environment_gp0m8")
+environment = ExtResource("2_k0me7")
 current = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/Camera3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Depth_Subviewport/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0, 0, 0)
 visible = false
 layers = 786432
@@ -89,8 +116,30 @@ extra_cull_margin = 16384.0
 mesh = SubResource("QuadMesh_am7tg")
 skeleton = NodePath("../../../Camera3D")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Edge_Subviewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(384, 216)
+render_target_update_mode = 4
+
+[node name="Edge_Cam" type="Camera3D" parent="Edge_Subviewport"]
+transform = Transform3D(1, 0, 0, 0, 0.910684, 0.413104, 0, -0.413104, 0.910684, 0, 2.164, 2.844)
+cull_mask = 131072
+environment = ExtResource("2_k0me7")
+current = true
+
+[node name="Edge_Mesh" type="MeshInstance3D" parent="Edge_Subviewport/Edge_Cam"]
 visible = false
-offset_right = 512.0
-offset_bottom = 512.0
+layers = 131072
+mesh = SubResource("QuadMesh_bhoee")
+
+[node name="Edge_Texture" type="TextureRect" parent="."]
+visible = false
+offset_right = 384.0
+offset_bottom = 216.0
+texture = SubResource("ViewportTexture_eko2c")
+
+[node name="Depth_Texture" type="TextureRect" parent="."]
+visible = false
+offset_right = 384.0
+offset_bottom = 216.0
 texture = SubResource("ViewportTexture_ljltx")
