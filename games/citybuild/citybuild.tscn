@@ -1,0 +1,548 @@
+[gd_scene load_steps=56 format=3 uid="uid://dqcmxiuuqkhhl"]
+
+[ext_resource type="Script" path="res://addons/stablediffusion_renderer/sd_scene.gd" id="1_bv3lt"]
+[ext_resource type="Script" path="res://games/citybuild/citybuild_game_controler.gd" id="2_ojsnt"]
+[ext_resource type="Script" path="res://games/citybuild/Placeable_field.gd" id="3_iubbv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_638gu"]
+size = Vector3(2, 0.2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_oxjnp"]
+size = Vector3(1.7, 0.2, 1.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jejmb"]
+size = Vector3(2, 0.2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_v3xj6"]
+size = Vector3(1.7, 0.2, 1.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rtmlp"]
+size = Vector3(2, 0.2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ftpak"]
+size = Vector3(1.7, 0.2, 1.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_44b2i"]
+size = Vector3(2, 0.2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_u2fbs"]
+size = Vector3(1.7, 0.2, 1.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kan5o"]
+size = Vector3(2, 0.2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_37pn2"]
+size = Vector3(1.7, 0.2, 1.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0uctw"]
+size = Vector3(2, 0.2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qrhem"]
+size = Vector3(1.7, 0.2, 1.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i7i1q"]
+size = Vector3(2, 0.2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7xac6"]
+size = Vector3(1.7, 0.2, 1.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s8rv4"]
+size = Vector3(2, 0.2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_u4k4v"]
+size = Vector3(1.7, 0.2, 1.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5w5rc"]
+size = Vector3(2, 0.2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_w50vd"]
+size = Vector3(1.7, 0.2, 1.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pc4yd"]
+size = Vector3(2, 0.2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_d4bnv"]
+size = Vector3(1.7, 0.2, 1.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3s4yf"]
+size = Vector3(2, 0.2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_j8byu"]
+size = Vector3(1.7, 0.2, 1.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cpn4g"]
+size = Vector3(2, 0.2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_thloq"]
+size = Vector3(1.7, 0.2, 1.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b800l"]
+size = Vector3(2, 0.2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bqsfm"]
+size = Vector3(1.7, 0.2, 1.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_erlom"]
+size = Vector3(2, 0.2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_c0obo"]
+size = Vector3(1.7, 0.2, 1.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_onpr0"]
+size = Vector3(2, 0.2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3vobq"]
+size = Vector3(1.7, 0.2, 1.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kx2xy"]
+size = Vector3(2, 0.2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_v4aim"]
+size = Vector3(1.7, 0.2, 1.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p7x0m"]
+size = Vector3(2, 0.2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_egnx2"]
+size = Vector3(1.7, 0.2, 1.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b4jfq"]
+size = Vector3(2, 0.2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_auhnt"]
+size = Vector3(1.7, 0.2, 1.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hjgdx"]
+size = Vector3(2, 0.2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xc4gk"]
+size = Vector3(1.7, 0.2, 1.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7ouog"]
+size = Vector3(2, 0.2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_v5l73"]
+size = Vector3(1.7, 0.2, 1.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_voni6"]
+size = Vector3(2, 0.2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vw0ya"]
+size = Vector3(1.7, 0.2, 1.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0o6ju"]
+size = Vector3(2, 0.2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0vyea"]
+size = Vector3(1.7, 0.2, 1.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cu66v"]
+size = Vector3(2, 0.2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_htutn"]
+size = Vector3(1.7, 0.2, 1.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x2xks"]
+size = Vector3(2, 0.2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bh01k"]
+size = Vector3(1.7, 0.2, 1.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7u3y0"]
+size = Vector3(2, 0.2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1aiq0"]
+size = Vector3(1.7, 0.2, 1.7)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xla61"]
+size = Vector2(10, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ooo2r"]
+albedo_color = Color(0, 0.14902, 0.368627, 1)
+
+[node name="SD_Scene3D" type="Node3D" node_paths=PackedStringArray("camera")]
+script = ExtResource("1_bv3lt")
+camera = NodePath("Camera3D")
+controlnet_option = 1
+sd_prompt = "miniature houses made of wood on a table"
+sd_negative_prompt = "unfocused, bokeh"
+
+[node name="Game_controler" type="Node" parent="."]
+script = ExtResource("2_ojsnt")
+
+[node name="placeable_fields" type="Node3D" parent="."]
+visible = false
+
+[node name="row1" type="Node3D" parent="placeable_fields"]
+
+[node name="Placeable_field" type="Area3D" parent="placeable_fields/row1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
+script = ExtResource("3_iubbv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="placeable_fields/row1/Placeable_field"]
+shape = SubResource("BoxShape3D_638gu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="placeable_fields/row1/Placeable_field"]
+visible = false
+mesh = SubResource("BoxMesh_oxjnp")
+
+[node name="Placeable_field2" type="Area3D" parent="placeable_fields/row1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4)
+script = ExtResource("3_iubbv")
+pos = Vector2i(1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="placeable_fields/row1/Placeable_field2"]
+shape = SubResource("BoxShape3D_jejmb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="placeable_fields/row1/Placeable_field2"]
+visible = false
+mesh = SubResource("BoxMesh_v3xj6")
+
+[node name="Placeable_field3" type="Area3D" parent="placeable_fields/row1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+script = ExtResource("3_iubbv")
+pos = Vector2i(2, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="placeable_fields/row1/Placeable_field3"]
+shape = SubResource("BoxShape3D_rtmlp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="placeable_fields/row1/Placeable_field3"]
+visible = false
+mesh = SubResource("BoxMesh_ftpak")
+
+[node name="Placeable_field4" type="Area3D" parent="placeable_fields/row1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
+script = ExtResource("3_iubbv")
+pos = Vector2i(3, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="placeable_fields/row1/Placeable_field4"]
+shape = SubResource("BoxShape3D_44b2i")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="placeable_fields/row1/Placeable_field4"]
+visible = false
+mesh = SubResource("BoxMesh_u2fbs")
+
+[node name="Placeable_field5" type="Area3D" parent="placeable_fields/row1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 4)
+script = ExtResource("3_iubbv")
+pos = Vector2i(4, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="placeable_fields/row1/Placeable_field5"]
+shape = SubResource("BoxShape3D_kan5o")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="placeable_fields/row1/Placeable_field5"]
+visible = false
+mesh = SubResource("BoxMesh_37pn2")
+
+[node name="row2" type="Node3D" parent="placeable_fields"]
+
+[node name="Placeable_field6" type="Area3D" parent="placeable_fields/row2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 2)
+script = ExtResource("3_iubbv")
+pos = Vector2i(0, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="placeable_fields/row2/Placeable_field6"]
+shape = SubResource("BoxShape3D_0uctw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="placeable_fields/row2/Placeable_field6"]
+visible = false
+mesh = SubResource("BoxMesh_qrhem")
+
+[node name="Placeable_field7" type="Area3D" parent="placeable_fields/row2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
+script = ExtResource("3_iubbv")
+pos = Vector2i(1, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="placeable_fields/row2/Placeable_field7"]
+shape = SubResource("BoxShape3D_i7i1q")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="placeable_fields/row2/Placeable_field7"]
+visible = false
+mesh = SubResource("BoxMesh_7xac6")
+
+[node name="Placeable_field8" type="Area3D" parent="placeable_fields/row2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+script = ExtResource("3_iubbv")
+pos = Vector2i(2, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="placeable_fields/row2/Placeable_field8"]
+shape = SubResource("BoxShape3D_s8rv4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="placeable_fields/row2/Placeable_field8"]
+visible = false
+mesh = SubResource("BoxMesh_u4k4v")
+
+[node name="Placeable_field9" type="Area3D" parent="placeable_fields/row2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)
+script = ExtResource("3_iubbv")
+pos = Vector2i(3, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="placeable_fields/row2/Placeable_field9"]
+shape = SubResource("BoxShape3D_5w5rc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="placeable_fields/row2/Placeable_field9"]
+visible = false
+mesh = SubResource("BoxMesh_w50vd")
+
+[node name="Placeable_field10" type="Area3D" parent="placeable_fields/row2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2)
+script = ExtResource("3_iubbv")
+pos = Vector2i(4, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="placeable_fields/row2/Placeable_field10"]
+shape = SubResource("BoxShape3D_pc4yd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="placeable_fields/row2/Placeable_field10"]
+visible = false
+mesh = SubResource("BoxMesh_d4bnv")
+
+[node name="row3" type="Node3D" parent="placeable_fields"]
+
+[node name="Placeable_field11" type="Area3D" parent="placeable_fields/row3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+script = ExtResource("3_iubbv")
+pos = Vector2i(0, 2)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="placeable_fields/row3/Placeable_field11"]
+shape = SubResource("BoxShape3D_3s4yf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="placeable_fields/row3/Placeable_field11"]
+visible = false
+mesh = SubResource("BoxMesh_j8byu")
+
+[node name="Placeable_field12" type="Area3D" parent="placeable_fields/row3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+script = ExtResource("3_iubbv")
+pos = Vector2i(1, 2)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="placeable_fields/row3/Placeable_field12"]
+shape = SubResource("BoxShape3D_cpn4g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="placeable_fields/row3/Placeable_field12"]
+visible = false
+mesh = SubResource("BoxMesh_thloq")
+
+[node name="Placeable_field13" type="Area3D" parent="placeable_fields/row3"]
+script = ExtResource("3_iubbv")
+pos = Vector2i(2, 2)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="placeable_fields/row3/Placeable_field13"]
+shape = SubResource("BoxShape3D_b800l")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="placeable_fields/row3/Placeable_field13"]
+visible = false
+mesh = SubResource("BoxMesh_bqsfm")
+
+[node name="Placeable_field14" type="Area3D" parent="placeable_fields/row3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+script = ExtResource("3_iubbv")
+pos = Vector2i(3, 2)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="placeable_fields/row3/Placeable_field14"]
+shape = SubResource("BoxShape3D_erlom")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="placeable_fields/row3/Placeable_field14"]
+visible = false
+mesh = SubResource("BoxMesh_c0obo")
+
+[node name="Placeable_field15" type="Area3D" parent="placeable_fields/row3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+script = ExtResource("3_iubbv")
+pos = Vector2i(4, 2)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="placeable_fields/row3/Placeable_field15"]
+shape = SubResource("BoxShape3D_onpr0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="placeable_fields/row3/Placeable_field15"]
+visible = false
+mesh = SubResource("BoxMesh_3vobq")
+
+[node name="row4" type="Node3D" parent="placeable_fields"]
+
+[node name="Placeable_field16" type="Area3D" parent="placeable_fields/row4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -2)
+script = ExtResource("3_iubbv")
+pos = Vector2i(0, 3)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="placeable_fields/row4/Placeable_field16"]
+shape = SubResource("BoxShape3D_kx2xy")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="placeable_fields/row4/Placeable_field16"]
+visible = false
+mesh = SubResource("BoxMesh_v4aim")
+
+[node name="Placeable_field17" type="Area3D" parent="placeable_fields/row4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
+script = ExtResource("3_iubbv")
+pos = Vector2i(1, 3)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="placeable_fields/row4/Placeable_field17"]
+shape = SubResource("BoxShape3D_p7x0m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="placeable_fields/row4/Placeable_field17"]
+visible = false
+mesh = SubResource("BoxMesh_egnx2")
+
+[node name="Placeable_field18" type="Area3D" parent="placeable_fields/row4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+script = ExtResource("3_iubbv")
+pos = Vector2i(2, 3)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="placeable_fields/row4/Placeable_field18"]
+shape = SubResource("BoxShape3D_b4jfq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="placeable_fields/row4/Placeable_field18"]
+visible = false
+mesh = SubResource("BoxMesh_auhnt")
+
+[node name="Placeable_field19" type="Area3D" parent="placeable_fields/row4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2)
+script = ExtResource("3_iubbv")
+pos = Vector2i(3, 3)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="placeable_fields/row4/Placeable_field19"]
+shape = SubResource("BoxShape3D_hjgdx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="placeable_fields/row4/Placeable_field19"]
+visible = false
+mesh = SubResource("BoxMesh_xc4gk")
+
+[node name="Placeable_field20" type="Area3D" parent="placeable_fields/row4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -2)
+script = ExtResource("3_iubbv")
+pos = Vector2i(4, 3)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="placeable_fields/row4/Placeable_field20"]
+shape = SubResource("BoxShape3D_7ouog")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="placeable_fields/row4/Placeable_field20"]
+visible = false
+mesh = SubResource("BoxMesh_v5l73")
+
+[node name="row5" type="Node3D" parent="placeable_fields"]
+
+[node name="Placeable_field21" type="Area3D" parent="placeable_fields/row5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -4)
+script = ExtResource("3_iubbv")
+pos = Vector2i(0, 4)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="placeable_fields/row5/Placeable_field21"]
+shape = SubResource("BoxShape3D_voni6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="placeable_fields/row5/Placeable_field21"]
+visible = false
+mesh = SubResource("BoxMesh_vw0ya")
+
+[node name="Placeable_field22" type="Area3D" parent="placeable_fields/row5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -4)
+script = ExtResource("3_iubbv")
+pos = Vector2i(1, 4)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="placeable_fields/row5/Placeable_field22"]
+shape = SubResource("BoxShape3D_0o6ju")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="placeable_fields/row5/Placeable_field22"]
+visible = false
+mesh = SubResource("BoxMesh_0vyea")
+
+[node name="Placeable_field23" type="Area3D" parent="placeable_fields/row5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+script = ExtResource("3_iubbv")
+pos = Vector2i(2, 4)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="placeable_fields/row5/Placeable_field23"]
+shape = SubResource("BoxShape3D_cu66v")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="placeable_fields/row5/Placeable_field23"]
+visible = false
+mesh = SubResource("BoxMesh_htutn")
+
+[node name="Placeable_field24" type="Area3D" parent="placeable_fields/row5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4)
+script = ExtResource("3_iubbv")
+pos = Vector2i(3, 4)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="placeable_fields/row5/Placeable_field24"]
+shape = SubResource("BoxShape3D_x2xks")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="placeable_fields/row5/Placeable_field24"]
+visible = false
+mesh = SubResource("BoxMesh_bh01k")
+
+[node name="Placeable_field25" type="Area3D" parent="placeable_fields/row5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4)
+script = ExtResource("3_iubbv")
+pos = Vector2i(4, 4)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="placeable_fields/row5/Placeable_field25"]
+shape = SubResource("BoxShape3D_7u3y0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="placeable_fields/row5/Placeable_field25"]
+visible = false
+mesh = SubResource("BoxMesh_1aiq0")
+
+[node name="plane" type="MeshInstance3D" parent="."]
+layers = 524289
+mesh = SubResource("PlaneMesh_xla61")
+surface_material_override/0 = SubResource("StandardMaterial3D_ooo2r")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.91095, 0.412516, 0, -0.412516, 0.91095, 0, 4.14227, 8.21175)
+cull_mask = 1
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.91095, 0.412516, 0, -0.412516, 0.91095, 0, 2.16416, 3.0725)
+light_energy = 3.078
+light_size = 0.01
+light_cull_mask = 4294180863
+shadow_enabled = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.215178, -0.571138, 0.792149, -0.29187, 0.811686, 0.505942, -0.931939, -0.122337, -0.341355, 3.55354, 3.08697, -4.42038)
+light_cull_mask = 4294049791
+shadow_enabled = true
+
+[node name="Interface" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 350.0
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Interface"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="Interface/VBoxContainer"]
+layout_mode = 2
+
+[node name="Small_house_btn" type="Button" parent="Interface/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Small house (10 gold)"
+
+[node name="Big_house_btn" type="Button" parent="Interface/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Big house (20 gold)"
+
+[node name="Skyscraper_btn" type="Button" parent="Interface/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Skyscraper (50 gold)"
+
+[node name="Label" type="Label" parent="Interface/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+text = "Gold: 0"
+vertical_alignment = 1
+
+[connection signal="pressed" from="Interface/VBoxContainer/GridContainer/Small_house_btn" to="Game_controler" method="_on_small_house_btn_pressed"]
+[connection signal="pressed" from="Interface/VBoxContainer/GridContainer/Big_house_btn" to="Game_controler" method="_on_big_house_btn_pressed"]
+[connection signal="pressed" from="Interface/VBoxContainer/GridContainer/Skyscraper_btn" to="Game_controler" method="_on_skyscraper_btn_pressed"]

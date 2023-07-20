@@ -7,7 +7,8 @@ extends Button
 @export var steps : int = 50
 
 @export var texture_rect : TextureRect
-@export var scene : Node3D
+
+var scene : Node3D = null : set = set_scene
 
 var requestNode
 
@@ -21,8 +22,8 @@ func generate_from_data() -> void:
 	requestNode.request(api_url, headers, HTTPClient.METHOD_POST, json)
 	
 	# create texture from image and add it to root
-	#var texture = ImageTexture.create_from_image(scene.get_edge_texture())
-	#texture_rect.texture = texture
+	var texture = ImageTexture.create_from_image(scene.get_texture())
+	texture_rect.texture = texture
 
 
 func _on_request_completed(result, response_code, headers, body):
@@ -49,23 +50,25 @@ func _on_request_completed(result, response_code, headers, body):
 	var texture = ImageTexture.create_from_image(image)
 	texture_rect.texture = texture
 
+func set_scene(p_scene):
+	scene = p_scene
+
 func generateJsonFromData():
+	print(SD_Renderer.cn_options_values[scene.controlnet_option][0], " ::: ", SD_Renderer.cn_options_values[scene.controlnet_option][1])
 	var dataAsJson = JSON.new().stringify({
-		"prompt": prompt,
+		"prompt": scene.sd_prompt,
+		"negative_prompt": scene.sd_negative_prompt,
 		"steps": steps,
 		"width": 640,
 		"height": 360,
-#		"seed": 1246581,
+		"seed": 1246581,
 		"alwayson_scripts": {
 			"controlnet": {
 				"args": [
 					{
-						#"input_image": encodeBase64(depth_image.get_image()),
-						"input_image": encodeBase64(scene.get_edge_texture()),
-						#"module": "depth",
-						#"model": "control_v11f1p_sd15_depth [cfd03158]"
-						"module": "canny",
-						"model": "control_v11p_sd15_canny [d14c016b]"
+						"input_image": encodeBase64(scene.get_texture()),
+						"module": SD_Renderer.cn_options_values[scene.controlnet_option][0],
+						"model": SD_Renderer.cn_options_values[scene.controlnet_option][1]
 					}
 				]
 			}

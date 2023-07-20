@@ -2,6 +2,12 @@
 extends EditorPlugin
 class_name SD_Renderer
 
+enum CN_Options {DEPTH, EDGE}
+const cn_options_values = {
+	CN_Options.DEPTH : ["depth", "control_v11f1p_sd15_depth [cfd03158]"],
+	CN_Options.EDGE : ["canny", "control_v11p_sd15_canny [d14c016b]"]
+}
+
 const from_b64_database = {
 	"A": 0b000000,
 	"B": 0b000001,
@@ -143,7 +149,7 @@ const to_b64_database = {
 func _enter_tree():
 	# Initialization of the plugin goes here.
 	add_custom_type("SD_Button", "Button", preload("res://addons/stablediffusion_renderer/Stable_Renderer.gd"), null)
-	pass
+	add_custom_type("SD_Scene3D", "Node3D", preload("res://addons/stablediffusion_renderer/sd_scene.gd"), null)
 
 
 func _exit_tree():

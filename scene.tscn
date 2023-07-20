@@ -1,9 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://cgbgfdgmfvr78"]
+[gd_scene load_steps=17 format=3 uid="uid://b0mfulqkk06qx"]
 
 [ext_resource type="Script" path="res://scene.gd" id="1_dij8n"]
-[ext_resource type="Shader" path="res://depth_map.gdshader" id="1_uo68q"]
-[ext_resource type="Environment" uid="uid://cumh0jsy5i3k8" path="res://Viewport_Environment.tres" id="2_k0me7"]
-[ext_resource type="Shader" path="res://sobelsedge.gdshader" id="3_bofvt"]
+[ext_resource type="Environment" uid="uid://cumh0jsy5i3k8" path="res://addons/stablediffusion_renderer/other_res/Viewport_Environment.tres" id="2_c4bly"]
+[ext_resource type="Shader" path="res://addons/stablediffusion_renderer/shader/depth_map.gdshader" id="3_1y23l"]
+[ext_resource type="Shader" path="res://addons/stablediffusion_renderer/shader/sobelsedge.gdshader" id="4_7yjy3"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_nv4wq"]
 
@@ -24,7 +24,7 @@ albedo_color = Color(0, 0.14902, 0.368627, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dqkyh"]
 render_priority = 0
-shader = ExtResource("1_uo68q")
+shader = ExtResource("3_1y23l")
 
 [sub_resource type="QuadMesh" id="QuadMesh_am7tg"]
 material = SubResource("ShaderMaterial_dqkyh")
@@ -33,8 +33,8 @@ size = Vector2(2, 2)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q10ud"]
 render_priority = 0
-shader = ExtResource("3_bofvt")
-shader_parameter/resolution = null
+shader = ExtResource("4_7yjy3")
+shader_parameter/resolution = Vector2(384, 216)
 
 [sub_resource type="QuadMesh" id="QuadMesh_bhoee"]
 material = SubResource("ShaderMaterial_q10ud")
@@ -104,7 +104,7 @@ render_target_update_mode = 4
 [node name="Camera3D" type="Camera3D" parent="Depth_Subviewport"]
 transform = Transform3D(1, 0, 0, 0, 0.91095, 0.412516, 0, -0.412516, 0.91095, 0, 2.16416, 2.84432)
 cull_mask = 786432
-environment = ExtResource("2_k0me7")
+environment = ExtResource("2_c4bly")
 current = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Depth_Subviewport/Camera3D"]
@@ -124,7 +124,7 @@ render_target_update_mode = 4
 [node name="Edge_Cam" type="Camera3D" parent="Edge_Subviewport"]
 transform = Transform3D(1, 0, 0, 0, 0.910684, 0.413104, 0, -0.413104, 0.910684, 0, 2.164, 2.844)
 cull_mask = 131072
-environment = ExtResource("2_k0me7")
+environment = ExtResource("2_c4bly")
 current = true
 
 [node name="Edge_Mesh" type="MeshInstance3D" parent="Edge_Subviewport/Edge_Cam"]

@@ -1,11 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bw8pasxsqrc5"]
+[gd_scene load_steps=3 format=3 uid="uid://immfn6nki4lr"]
 
-[ext_resource type="PackedScene" uid="uid://cgbgfdgmfvr78" path="res://scene.tscn" id="1_p2mjf"]
-[ext_resource type="Script" path="res://main.gd" id="1_rgj1n"]
-[ext_resource type="Script" path="res://addons/stablediffusion_renderer/Stable_Renderer.gd" id="2_d10al"]
+[ext_resource type="Script" path="res://addons/stablediffusion_renderer/scenes/sd_interface.gd" id="1_khib5"]
+[ext_resource type="Script" path="res://addons/stablediffusion_renderer/Stable_Renderer.gd" id="3_y3h51"]
 
 [node name="Node" type="Node"]
-script = ExtResource("1_rgj1n")
+script = ExtResource("1_khib5")
 
 [node name="Big_Viewport_container" type="AspectRatioContainer" parent="."]
 anchors_preset = 15
@@ -22,10 +21,9 @@ size_flags_vertical = 4
 
 [node name="SubViewport" type="SubViewport" parent="Big_Viewport_container/BigViewport"]
 handle_input_locally = false
+physics_object_picking = true
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
-
-[node name="scene" parent="Big_Viewport_container/BigViewport/SubViewport" instance=ExtResource("1_p2mjf")]
 
 [node name="Button_container" type="AspectRatioContainer" parent="."]
 anchors_preset = 3
@@ -40,14 +38,13 @@ offset_bottom = -233.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="SD_Button" type="Button" parent="Button_container" node_paths=PackedStringArray("texture_rect", "scene")]
+[node name="SD_Button" type="Button" parent="Button_container" node_paths=PackedStringArray("texture_rect")]
 layout_mode = 2
 text = "Click for render with SD"
-script = ExtResource("2_d10al")
-prompt = "skyscraper in san francisco, unreal engine"
+script = ExtResource("3_y3h51")
+prompt = "skyscraper in san francisco, in steampunk style"
 steps = 20
 texture_rect = NodePath("../../Small_Viewport_container/SmallViewport/SubViewport/TextureRect")
-scene = NodePath("../../Big_Viewport_container/BigViewport/SubViewport/scene")
 
 [node name="Small_Viewport_container" type="AspectRatioContainer" parent="."]
 anchors_preset = 3
