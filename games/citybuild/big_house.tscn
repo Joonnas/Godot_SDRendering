@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdwks1bwtfthl"]
+
+[ext_resource type="Script" path="res://games/citybuild/House.gd" id="1_w3khi"]
+[ext_resource type="Material" uid="uid://drg4fun4stn2j" path="res://games/citybuild/res/house_material.tres" id="2_y03lb"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_o1vyd"]
+material = ExtResource("2_y03lb")
+size = Vector3(1, 1.6, 1)
+
+[node name="big_house" type="Area3D"]
+script = ExtResource("1_w3khi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+layers = 786433
+mesh = SubResource("BoxMesh_o1vyd")

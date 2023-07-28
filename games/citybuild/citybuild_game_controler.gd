@@ -4,6 +4,8 @@ class_name Citybuild_Controler
 enum HouseTypes {SMALL_HOUSE, BIG_HOUSE, SKYSCRAPER, EMPTY = -1}
 
 const small_house_scene = preload("res://games/citybuild/small_house.tscn")
+const big_house_scene = preload("res://games/citybuild/big_house.tscn")
+const skyscraper_scene = preload("res://games/citybuild/skyscraper.tscn")
 
 var field = [
 	[HouseTypes.EMPTY, HouseTypes.EMPTY, HouseTypes.EMPTY, HouseTypes.EMPTY, HouseTypes.EMPTY],
@@ -49,6 +51,10 @@ func add_house(position: Vector2i, house_type: HouseTypes):
 	var instance
 	if house_type == HouseTypes.SMALL_HOUSE:
 		instance = small_house_scene.instantiate()
+	elif house_type == HouseTypes.BIG_HOUSE:
+		instance = big_house_scene.instantiate()
+	elif house_type == HouseTypes.SKYSCRAPER:
+		instance = skyscraper_scene.instantiate()
 	
 	instance.position = Vector3((position.x - 2.0) * -2.0, instance.position.y, (position.y - 2.0) * -2.0)
 	self.add_child(instance)

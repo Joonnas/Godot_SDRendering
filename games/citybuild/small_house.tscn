@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://csajglppcsa0v"]
 
-[ext_resource type="Script" path="res://games/citybuild/SmallHouse.gd" id="1_jmtdy"]
+[ext_resource type="Script" path="res://games/citybuild/House.gd" id="1_06maw"]
 [ext_resource type="Material" uid="uid://drg4fun4stn2j" path="res://games/citybuild/res/house_material.tres" id="2_gwf83"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ia1yf"]
@@ -9,7 +9,7 @@ size = Vector3(1, 0.8, 1)
 
 [node name="SmallHouse" type="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
-script = ExtResource("1_jmtdy")
+script = ExtResource("1_06maw")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 
