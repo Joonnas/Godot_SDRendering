@@ -38,3 +38,9 @@ func _on_depth_game_btn_pressed():
 
 func _on_edge_game_btn_pressed():
 	print("EDGE Game")
+
+
+func _on_chess_btn_pressed():
+	print("CHESS")
+	sd_interface_instance.sd_scene = load("res://games/chess/chess.tscn").instantiate()
+	set_gamestate(GameStates.IN_GAME)

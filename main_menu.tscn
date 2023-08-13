@@ -10,9 +10,9 @@ grow_vertical = 2
 
 [node name="Depth_Game_Btn" type="Button" parent="."]
 layout_mode = 0
-offset_left = 81.0
+offset_left = 84.0
 offset_top = 83.0
-offset_right = 186.0
+offset_right = 189.0
 offset_bottom = 114.0
 text = "Depth Game"
 
@@ -23,3 +23,11 @@ offset_top = 140.0
 offset_right = 179.0
 offset_bottom = 171.0
 text = "Edge Game"
+
+[node name="Chess_Btn" type="Button" parent="."]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 193.0
+offset_right = 138.0
+offset_bottom = 224.0
+text = "Chess"

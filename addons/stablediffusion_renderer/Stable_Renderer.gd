@@ -61,7 +61,7 @@ func generateJsonFromData():
 		"steps": steps,
 		"width": 640,
 		"height": 360,
-		"seed": 1246581,
+		#"seed": 54231,
 		"alwayson_scripts": {
 			"controlnet": {
 				"args": [

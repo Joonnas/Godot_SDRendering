@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://bffqy6d50qsgs"]
+
+[ext_resource type="Script" path="res://addons/stablediffusion_renderer/sd_scene.gd" id="1_u6xi6"]
+[ext_resource type="Script" path="res://games/chess/chess_game_controler.gd" id="2_5gyeb"]
+[ext_resource type="PackedScene" uid="uid://b42jls5wc4hhu" path="res://games/chess/chess_field.tscn" id="3_5kfsy"]
+
+[node name="SD_Scene3D" type="Node3D" node_paths=PackedStringArray("camera")]
+script = ExtResource("1_u6xi6")
+camera = NodePath("Camera3D")
+controlnet_option = 1
+sd_prompt = "chess field on a table with the colors black and white and black closer to the camera, unreal engine"
+sd_negative_prompt = "distorted, ugly, disformed, mirroring, blur, bokeh, disfigured"
+
+[node name="Chess_GameControler" type="Node" parent="." node_paths=PackedStringArray("field")]
+script = ExtResource("2_5gyeb")
+field = NodePath("../Chess_Field")
+
+[node name="Chess_Field" parent="." instance=ExtResource("3_5kfsy")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.861079, 0.50847, 0, -0.50847, 0.861079, 0, 4.5, 7)
+cull_mask = 1
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.74808, 0)
+light_specular = 0.0
+light_cull_mask = 4294049791
+editor_only = true
+omni_range = 251.348
+omni_attenuation = 0.00296037
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.215178, -0.571138, 0.792149, -0.29187, 0.811686, 0.505942, -0.931939, -0.122337, -0.341355, 3.55354, 3.08697, -4.42038)
+light_cull_mask = 4294049791

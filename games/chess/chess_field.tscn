@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://b42jls5wc4hhu"]
+
+[ext_resource type="Script" path="res://games/chess/chess_field.gd" id="1_5u1bj"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_lijve"]
+size = Vector3(8, 0.5, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_y7u1f"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="Chess_Field" type="Node3D"]
+script = ExtResource("1_5u1bj")
+
+[node name="Wall_edge_bot" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.25)
+layers = 524289
+mesh = SubResource("BoxMesh_lijve")
+
+[node name="Wall_edge_top" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.25)
+layers = 524289
+mesh = SubResource("BoxMesh_lijve")
+
+[node name="Wall_edge_right" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.25, 0, 0)
+layers = 524289
+mesh = SubResource("BoxMesh_lijve")
+
+[node name="Wall_edge_left" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.25, 0, 0)
+layers = 524289
+mesh = SubResource("BoxMesh_lijve")
+
+[node name="Wall_corner_botR" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 0, 4.25)
+layers = 524289
+mesh = SubResource("BoxMesh_y7u1f")
+
+[node name="Wall_corner_botL" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25, 0, 4.25)
+layers = 524289
+mesh = SubResource("BoxMesh_y7u1f")
+
+[node name="Wall_corner_topR" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 0, -4.25)
+layers = 524289
+mesh = SubResource("BoxMesh_y7u1f")
+
+[node name="Wall_corner_topL" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25, 0, -4.25)
+layers = 524289
+mesh = SubResource("BoxMesh_y7u1f")
+
+[node name="Pieces" type="Node3D" parent="."]

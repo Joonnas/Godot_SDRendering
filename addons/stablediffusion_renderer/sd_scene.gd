@@ -45,6 +45,7 @@ func _ready():
 			sv_mesh.set_layer_mask_value(i, false)
 		sv_mesh.set_layer_mask_value(19, true)
 		sv_mesh.set_layer_mask_value(20, true)
+		print(depth_shader)
 		
 		sv_camera.add_child(sv_mesh)
 		for i in range(20):

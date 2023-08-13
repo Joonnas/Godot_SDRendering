@@ -10,5 +10,6 @@ script = ExtResource("1_6kbqa")
 
 [connection signal="pressed" from="Main_Menu/Depth_Game_Btn" to="." method="_on_depth_game_btn_pressed"]
 [connection signal="pressed" from="Main_Menu/Edge_Game_Btn" to="." method="_on_edge_game_btn_pressed"]
+[connection signal="pressed" from="Main_Menu/Chess_Btn" to="." method="_on_chess_btn_pressed"]
 
 [editable path="Main_Menu"]
