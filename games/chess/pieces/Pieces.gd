@@ -3,7 +3,8 @@ class_name Piece
 
 var player := 0:
 	set = set_player
-var active := false
+var active := false:
+	set = set_active
 var mouse_over := false
 var current_player := -1
 
@@ -19,7 +20,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var material = $MeshInstance3D.mesh.material
+	var material = $Model.get_child(0).mesh.get("surface_0/material")
 	
 	if not material or !in_game:
 		return
@@ -42,17 +43,24 @@ func _process(delta):
 
 func set_player(value):
 	if value == 0:
-		$MeshInstance3D.mesh.material = preload("res://games/chess/pawns/White_Color.tres").duplicate()
+		$Model.get_child(0).mesh.set("surface_0/material", preload("res://games/chess/pieces/White_Color.tres").duplicate())
 	elif value == 1:
-		$MeshInstance3D.mesh.material = preload("res://games/chess/pawns/Black_Color.tres").duplicate()
+		$Model.get_child(0).mesh.set("surface_0/material", preload("res://games/chess/pieces/Black_Color.tres").duplicate())
 	else:
 		return
-	$MeshInstance3D.mesh.material.resource_local_to_scene = true
+	$Model.get_child(0).mesh.resource_local_to_scene = true
 	player = value
 
 
 func piece_set():
 	pass
+
+func set_active(value):
+	if value:
+		self.position.y = 0.2
+	else:
+		self.position.y = 0.0
+	active = value
 
 func _on_area_3d_input_event(camera, event, position, normal, shape_idx):
 	if event is InputEventMouseButton and player == current_player and in_game:

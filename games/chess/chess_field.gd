@@ -2,12 +2,12 @@ extends Node3D
 
 const CHESS_FIELD_TILE = preload("res://games/chess/chess_field_tile.tscn")
 
-const CHESS_FIELD_KING = preload("res://games/chess/pawns/King.tscn")
-const CHESS_FIELD_QUEEN = preload("res://games/chess/pawns/Queen.tscn")
-const CHESS_FIELD_ROOK = preload("res://games/chess/pawns/Rook.tscn")
-const CHESS_FIELD_BISHOP = preload("res://games/chess/pawns/Bishop.tscn")
-const CHESS_FIELD_KNIGHT = preload("res://games/chess/pawns/Knight.tscn")
-const CHESS_FIELD_PAWN = preload("res://games/chess/pawns/Pawn.tscn")
+const CHESS_FIELD_KING = preload("res://games/chess/pieces/King.tscn")
+const CHESS_FIELD_QUEEN = preload("res://games/chess/pieces/Queen.tscn")
+const CHESS_FIELD_ROOK = preload("res://games/chess/pieces/Rook.tscn")
+const CHESS_FIELD_BISHOP = preload("res://games/chess/pieces/Bishop.tscn")
+const CHESS_FIELD_KNIGHT = preload("res://games/chess/pieces/Knight.tscn")
+const CHESS_FIELD_PAWN = preload("res://games/chess/pieces/Pawn.tscn")
 
 var tiles = []
 
@@ -56,6 +56,8 @@ func instantiate_field():
 		tiles[0 if color == 0 else 56].occupied = i
 		
 		knight1.position = Vector3(-2.5, knight1.position.y, -3.5 if color == 0 else 3.5)
+		if i == 1:
+			knight1.rotation = Vector3(0.0, PI, 0.0)
 		tiles[1 if color == 0 else 57].occupied = i
 		
 		bishop1.position = Vector3(-1.5, bishop1.position.y, -3.5 if color == 0 else 3.5)
@@ -71,6 +73,8 @@ func instantiate_field():
 		tiles[5 if color == 0 else 61].occupied = i
 		
 		knight2.position = Vector3(2.5, knight2.position.y, -3.5 if color == 0 else 3.5)
+		if i == 1:
+			knight2.rotation = Vector3(0.0, PI, 0.0)
 		tiles[6 if color == 0 else 62].occupied = i
 		
 		rook2.position = Vector3(3.5, rook2.position.y, -3.5 if color == 0 else 3.5)
