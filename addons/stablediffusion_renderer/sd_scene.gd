@@ -9,10 +9,15 @@ var sv_texture : TextureRect
 
 const depth_shader = preload("res://addons/stablediffusion_renderer/shader/depth_map.gdshader")
 const sobel_shader = preload("res://addons/stablediffusion_renderer/shader/sobelsedge.gdshader")
+const thresh_shader = preload("res://addons/stablediffusion_renderer/shader/threshhold.gdshader")
 const camera_env = preload("res://addons/stablediffusion_renderer/other_res/Viewport_Environment.tres")
 
 @export_group("Scene elements")
 @export var camera : Camera3D
+@export var gameControler : Node
+
+@export_group("Render settings")
+@export var model_option : SD_Renderer.Model_Options = SD_Renderer.Model_Options.txt2img
 
 @export_group("Special Render settings")
 @export var controlnet_option: SD_Renderer.CN_Options = SD_Renderer.CN_Options.DEPTH :
@@ -25,9 +30,13 @@ const camera_env = preload("res://addons/stablediffusion_renderer/other_res/View
 @export var sd_negative_prompt : String = "" :
 	get:
 		return sd_negative_prompt
+var number_of_renders : int = 1
 
-func get_texture():
+func get_texture(current_render):
 	return subviewport.get_texture().get_image()
+
+func get_image():
+	return get_viewport().get_texture().get_image()
 
 func _ready():
 	if not Engine.is_editor_hint():
@@ -39,7 +48,7 @@ func _ready():
 		sv_mesh.mesh = QuadMesh.new()
 		sv_mesh.mesh.size = Vector2(2.0, 2.0)
 		sv_mesh.mesh.material = ShaderMaterial.new()
-		sv_mesh.mesh.material.shader = depth_shader if (controlnet_option == SD_Renderer.CN_Options.DEPTH) else sobel_shader
+		sv_mesh.mesh.material.shader = depth_shader if (controlnet_option == SD_Renderer.CN_Options.DEPTH) else sobel_shader if (controlnet_option == SD_Renderer.CN_Options.EDGE) else thresh_shader
 		sv_mesh.mesh.flip_faces = true
 		for i in range(20):
 			sv_mesh.set_layer_mask_value(i, false)
@@ -56,9 +65,10 @@ func _ready():
 		sv_camera.current = true
 		sv_camera.position = camera.position
 		sv_camera.rotation_degrees = camera.rotation_degrees
+		sv_camera.fov = camera.fov
 		
 		subviewport.add_child(sv_camera)
-		subviewport.size = Vector2i(384, 216)
+		subviewport.size = Vector2i(1920, 1080)
 		subviewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
 		subviewport.transparent_bg = true
 		

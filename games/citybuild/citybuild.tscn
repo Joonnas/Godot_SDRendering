@@ -163,8 +163,8 @@ albedo_color = Color(0, 0.14902, 0.368627, 1)
 [node name="SD_Scene3D" type="Node3D" node_paths=PackedStringArray("camera")]
 script = ExtResource("1_bv3lt")
 camera = NodePath("Camera3D")
-sd_prompt = "miniature houses made of wood on a table"
-sd_negative_prompt = "unfocused, bokeh"
+sd_prompt = "A little village between fields, cartoon, low poly"
+sd_negative_prompt = "ugly, disfigured, transparent, poorly drawn buildings, poorly drawn windows"
 
 [node name="Game_controler" type="Node" parent="."]
 script = ExtResource("2_ojsnt")

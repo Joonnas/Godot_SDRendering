@@ -8,6 +8,7 @@ uniform vec2 resolution = vec2(384, 216);
 
 void vertex() {
 	POSITION = vec4(VERTEX.xyz, 1.0);
+	//POSITION = vec4(0.0, 0.0, 0.0, 1.0);
 }
 
 //shader_type canvas_item;

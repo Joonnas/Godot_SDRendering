@@ -2,11 +2,14 @@
 extends EditorPlugin
 class_name SD_Renderer
 
-enum CN_Options {DEPTH, EDGE}
+enum CN_Options {DEPTH, EDGE, THRESHHOLD}
 const cn_options_values = {
 	CN_Options.DEPTH : ["depth", "control_v11f1p_sd15_depth [cfd03158]"],
-	CN_Options.EDGE : ["canny", "control_v11p_sd15_canny [d14c016b]"]
+	CN_Options.EDGE : ["canny", "control_v11p_sd15_canny [d14c016b]"],
+	CN_Options.THRESHHOLD : ["canny", "control_v11p_sd15_canny [d14c016b]"]
 }
+
+enum Model_Options {txt2img, img2img}
 
 const from_b64_database = {
 	"A": 0b000000,

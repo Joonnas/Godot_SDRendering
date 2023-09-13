@@ -25,6 +25,8 @@ func _process(delta):
 
 func generate_field():
 	
+	var current_field = 0 # 0 = black; 1 = white
+	
 	for x in range(8):
 		for y in range(8):
 			var tile_instance = CHESS_FIELD_TILE.instantiate()
@@ -32,9 +34,13 @@ func generate_field():
 			tile_instance.position.z = x - 3.5
 			tile_instance.tile_id.x = x
 			tile_instance.tile_id.y = y
+			tile_instance.c = current_field
 			tile_instance.click.connect(change_piece)
 			tiles.append(tile_instance)
 			self.add_child(tile_instance)
+			
+			current_field = 0 if current_field == 1 else 1
+		current_field = 0 if current_field == 1 else 1
 
 func instantiate_field():
 	
@@ -161,3 +167,29 @@ func piece_clicked():
 		piece.active = false
 	for tile in tiles:
 		tile.can_state_change = true
+
+func render(render_count):
+	for child in $Pieces.get_children():
+		child.render(render_count)
+	
+	for tile in tiles:
+		tile.render(render_count)
+	
+	if (render_count == 3):
+		$Wall_edge_bot.set_layer_mask_value(20, true)
+		$Wall_edge_top.set_layer_mask_value(20, true)
+		$Wall_edge_right.set_layer_mask_value(20, true)
+		$Wall_edge_left.set_layer_mask_value(20, true)
+		$Wall_corner_botR.set_layer_mask_value(20, true)
+		$Wall_corner_botL.set_layer_mask_value(20, true)
+		$Wall_corner_topR.set_layer_mask_value(20, true)
+		$Wall_corner_topL.set_layer_mask_value(20, true)
+	else:
+		$Wall_edge_bot.set_layer_mask_value(20, false)
+		$Wall_edge_top.set_layer_mask_value(20, false)
+		$Wall_edge_right.set_layer_mask_value(20, false)
+		$Wall_edge_left.set_layer_mask_value(20, false)
+		$Wall_corner_botR.set_layer_mask_value(20, false)
+		$Wall_corner_botL.set_layer_mask_value(20, false)
+		$Wall_corner_topR.set_layer_mask_value(20, false)
+		$Wall_corner_topL.set_layer_mask_value(20, false)

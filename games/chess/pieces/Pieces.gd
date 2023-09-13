@@ -52,14 +52,26 @@ func set_player(value):
 	player = value
 
 
+#func render(color):
+#	if color == player:
+#		$Model.get_child(0).set_layer_mask_value(18, true)
+#		$Model.get_child(0).set_layer_mask_value(19, true)
+#		$Model.get_child(0).set_layer_mask_value(20, true)
+#	else:
+#		#$Model.get_child(0).set_layer_mask_value(18, false)
+#		#$Model.get_child(0).set_layer_mask_value(19, false)
+#		#$Model.get_child(0).set_layer_mask_value(20, false)
+#		pass
+
 func piece_set():
 	pass
 
 func set_active(value):
-	if value:
-		self.position.y = 0.2
-	else:
-		self.position.y = 0.0
+	if in_game:
+		if value:
+			self.position.y = 0.2
+		else:
+			self.position.y = 0.0
 	active = value
 
 func _on_area_3d_input_event(camera, event, position, normal, shape_idx):

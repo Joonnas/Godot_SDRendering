@@ -12,18 +12,33 @@ var scene : Node3D = null : set = set_scene
 
 var requestNode
 
+var current_render = 0
+
 # config: SD_Config
+
+func simulate_key(which_key, val):
+	var ev = InputEventKey.new()
+	ev.keycode = which_key
+	ev.pressed = val
+	Input.parse_input_event(ev)
 
 func generate_from_data() -> void:
 	# create request to the stable diffusion api
-	var api_url = url + "/sdapi/v1/txt2img"
-	var json = generateJsonFromData()
+	var scene_texture = await scene.get_texture(current_render)
+	await get_tree().create_timer(1).timeout
+	var api_url = url + ("/sdapi/v1/txt2img" if (scene.model_option == SD_Renderer.Model_Options.txt2img || scene.number_of_renders == 0) else "/sdapi/v1/img2img")
+	simulate_key(KEY_PERIOD, true)
+	simulate_key(KEY_PERIOD, false)
+	await get_tree().process_frame
+	var json = generateJsonFromData(scene_texture, scene.model_option)
 	var headers = ["Content-Type: application/json"]
 	requestNode.request(api_url, headers, HTTPClient.METHOD_POST, json)
 	
 	# create texture from image and add it to root
-	var texture = ImageTexture.create_from_image(scene.get_texture())
+	var texture = ImageTexture.create_from_image(scene_texture)
 	texture_rect.texture = texture
+	simulate_key(KEY_PERIOD, true)
+	simulate_key(KEY_PERIOD, false)
 
 
 func _on_request_completed(result, response_code, headers, body):
@@ -37,6 +52,8 @@ func _on_request_completed(result, response_code, headers, body):
 	json_object.parse(body.get_string_from_utf8())
 	var response = json_object.get_data()
 	
+	print(response["info"])
+	
 	# decode base64 encoded image
 	var data = decodeBase64(response["images"][0])
 	
@@ -49,31 +66,80 @@ func _on_request_completed(result, response_code, headers, body):
 	# create texture from image and add it to root
 	var texture = ImageTexture.create_from_image(image)
 	texture_rect.texture = texture
+	
+	#current_render += 1
+	#if (current_render < scene.number_of_renders):
+	#	generate_from_data()
+	#else:
+	#	current_render = 0
+	scene.number_of_renders += 1
 
 func set_scene(p_scene):
 	scene = p_scene
 
-func generateJsonFromData():
-	print(SD_Renderer.cn_options_values[scene.controlnet_option][0], " ::: ", SD_Renderer.cn_options_values[scene.controlnet_option][1])
-	var dataAsJson = JSON.new().stringify({
-		"prompt": scene.sd_prompt,
-		"negative_prompt": scene.sd_negative_prompt,
-		"steps": steps,
-		"width": 640,
-		"height": 360,
-		#"seed": 54231,
-		"alwayson_scripts": {
-			"controlnet": {
-				"args": [
-					{
-						"input_image": encodeBase64(scene.get_texture()),
-						"module": SD_Renderer.cn_options_values[scene.controlnet_option][0],
-						"model": SD_Renderer.cn_options_values[scene.controlnet_option][1]
-					}
-				]
+func generateJsonFromData(scene_texture, model):
+	var dataAsJson = null
+	if model == SD_Renderer.Model_Options.txt2img || scene.number_of_renders == 0:
+		dataAsJson = JSON.new().stringify({
+			"prompt": scene.sd_prompt,
+			"negative_prompt": scene.sd_negative_prompt,
+			"steps": steps,
+			#"width": 640,
+			#"height": 360,
+			"width": 1280,
+			"height": 720,
+			#"seed": 787135112,
+			#"seed": 2436549939,
+			#"seed": 4119095861,
+			#"seed": 2192436337,
+			#"seed": 2954826565,
+			"alwayson_scripts": {
+				"controlnet": {
+					"args": [
+						{
+							"input_image": encodeBase64(scene_texture),
+							"module": SD_Renderer.cn_options_values[scene.controlnet_option][0],
+							"model": SD_Renderer.cn_options_values[scene.controlnet_option][1],
+							"weight": 1.0,
+							#"preprocessor_resolution": 600,
+						}
+					]
+				}
 			}
-		}
-	})
+		})
+	
+	else:
+		dataAsJson = JSON.new().stringify({
+			"init_images": [
+				encodeBase64(scene.get_image())
+				#encodeBase64(texture_rect.texture.get_image())
+			],
+			"prompt": scene.sd_prompt,
+			"negative_prompt": scene.sd_negative_prompt,
+			"steps": steps,
+			#"width": 640,
+			#"height": 360,
+			"width": 1280,
+			"height": 720,
+			#"seed": 787135112,
+			#"seed": 2436549939,
+			#"seed": 4119095861,
+			"seed": 2704779737,
+			"alwayson_scripts": {
+				"controlnet": {
+					"args": [
+						{
+							"input_image": encodeBase64(scene_texture),
+							"module": SD_Renderer.cn_options_values[scene.controlnet_option][0],
+							"model": SD_Renderer.cn_options_values[scene.controlnet_option][1],
+							"weight": 1.0,
+							#"preprocessor_resolution": 600,
+						}
+					]
+				}
+			}
+		})
+	
 	return dataAsJson
 
 func encodeBase64(data: Image):
