@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="PluginTest"
+config/name="StableDiffusion_Rendering"
 run/main_scene="res://_root.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"

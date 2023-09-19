@@ -14,8 +14,6 @@ var requestNode
 
 var current_render = 0
 
-# config: SD_Config
-
 func simulate_key(which_key, val):
 	var ev = InputEventKey.new()
 	ev.keycode = which_key
@@ -66,12 +64,7 @@ func _on_request_completed(result, response_code, headers, body):
 	# create texture from image and add it to root
 	var texture = ImageTexture.create_from_image(image)
 	texture_rect.texture = texture
-	
-	#current_render += 1
-	#if (current_render < scene.number_of_renders):
-	#	generate_from_data()
-	#else:
-	#	current_render = 0
+
 	scene.number_of_renders += 1
 
 func set_scene(p_scene):
@@ -84,15 +77,9 @@ func generateJsonFromData(scene_texture, model):
 			"prompt": scene.sd_prompt,
 			"negative_prompt": scene.sd_negative_prompt,
 			"steps": steps,
-			#"width": 640,
-			#"height": 360,
 			"width": 1280,
 			"height": 720,
-			#"seed": 787135112,
-			#"seed": 2436549939,
-			#"seed": 4119095861,
-			#"seed": 2192436337,
-			#"seed": 2954826565,
+			"seed": 4070255767,
 			"alwayson_scripts": {
 				"controlnet": {
 					"args": [
@@ -101,7 +88,6 @@ func generateJsonFromData(scene_texture, model):
 							"module": SD_Renderer.cn_options_values[scene.controlnet_option][0],
 							"model": SD_Renderer.cn_options_values[scene.controlnet_option][1],
 							"weight": 1.0,
-							#"preprocessor_resolution": 600,
 						}
 					]
 				}
@@ -112,18 +98,12 @@ func generateJsonFromData(scene_texture, model):
 		dataAsJson = JSON.new().stringify({
 			"init_images": [
 				encodeBase64(scene.get_image())
-				#encodeBase64(texture_rect.texture.get_image())
 			],
 			"prompt": scene.sd_prompt,
 			"negative_prompt": scene.sd_negative_prompt,
 			"steps": steps,
-			#"width": 640,
-			#"height": 360,
 			"width": 1280,
 			"height": 720,
-			#"seed": 787135112,
-			#"seed": 2436549939,
-			#"seed": 4119095861,
 			"seed": 2704779737,
 			"alwayson_scripts": {
 				"controlnet": {
@@ -133,7 +113,6 @@ func generateJsonFromData(scene_texture, model):
 							"module": SD_Renderer.cn_options_values[scene.controlnet_option][0],
 							"model": SD_Renderer.cn_options_values[scene.controlnet_option][1],
 							"weight": 1.0,
-							#"preprocessor_resolution": 600,
 						}
 					]
 				}

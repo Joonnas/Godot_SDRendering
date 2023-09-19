@@ -7,12 +7,8 @@ var current_player = 0
 
 var in_move = false
 
-const base_prompt = "chessfield on a table"
-var variable_prompt_white = "16 white pieces"
-var variable_prompt_black = "16 black pieces"
 
 func _ready():
-	self.get_parent().sd_prompt = base_prompt + ", " + variable_prompt_black + ", " + variable_prompt_white
 	field.move_done.connect(finish_move)
 
 
