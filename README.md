@@ -2,4 +2,4 @@ Generative AI has seen a major impact in the recent time. For my Bachelorthesis 
 
 To try this project you need to have the Automatic1111 WebUI (https://github.com/AUTOMATIC1111/stable-diffusion-webui) installed and running. If it does not run on 127.0.0.1:7860 you need to change the exported URL of the SD_Button in the sd_interface scene ("/godot_project/addons/stablediffusion_renderer/scenes/sd_interface.tscn"). If you want to change settings like the seed (settings that are hardcoded) you can open the script of the SD_Button and change it in the function "generateJsonFromData()". Make sure to change the settings for the correct API!
 
-To toggle the UI of the citybuild game you can press the "I2 key. To toggle the interface of the add-on you can press the "." key and to switch the ingame viewport with the add-on viewport you can press "Alt+s".
+To toggle the UI of the citybuild game you can press the "I" key. To toggle the interface of the add-on you can press the "." key and to switch the ingame viewport with the add-on viewport you can press "Alt+s".
